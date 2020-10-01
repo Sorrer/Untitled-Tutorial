@@ -160,7 +160,7 @@ namespace Game.Collider {
         /// <param name="amount"></param>
         /// <param name="spacing"></param>
         /// <returns>Data of what happen with collision</returns>
-        private CollisionProperties CheckCollision(Vector2 direction, Vector2 a, Vector2 b, int amount, float spacing, float rayLength, bool debug = true) {
+        private CollisionProperties CheckCollision(Vector2 direction, Vector2 a, Vector2 b, int amount, float spacing, float rayLength, bool debug = false) {
             Vector2 spacingDir = (b - a).normalized;
             CollisionProperties properties = new CollisionProperties();
             properties.collided = false;
