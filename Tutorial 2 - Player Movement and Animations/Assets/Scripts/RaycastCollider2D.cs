@@ -167,8 +167,10 @@ namespace Game.Collider {
 
             for (int i = 0; i < amount; i++) {
                 RaycastHit2D hit = Physics2D.Raycast(a + (spacingDir * spacing * i), direction, rayLength, collisionMask);
-                if (hit.collider != null && (!(hit.collider.gameObject.tag == "Oneway Platform" && direction != Vector2.down) && !(hit.collider.gameObject.tag == "Oneway Platform" && PassthroughOneways))) {
-
+                bool isOneway = hit.collider.gameObject.tag == "Oneway Platform";
+                bool canCollideOneway = (!(isOneway && direction != Vector2.down) && !(isOneway && PassthroughOneways));
+                if (hit.collider != null && (canCollideOneway || (!canCollideOneway && !hit.collider.isTrigger))) {
+                    
                     if(debug) Debug.DrawRay(a + (spacingDir * spacing * i), direction * rayLength, Color.green);
                     properties.collided = true;
                     properties.hit = hit;
